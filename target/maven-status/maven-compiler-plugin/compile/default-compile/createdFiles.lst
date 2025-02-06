@@ -5,6 +5,7 @@ com\example\serviciohabitacion\DTO\HotelDTO.class
 com\example\serviciohabitacion\entity\TipoHabitacion.class
 com\example\serviciohabitacion\service\HabitacionService.class
 com\example\serviciohabitacion\controller\HabitacionController.class
+com\example\serviciohabitacion\config\SecurityConfig.class
 com\example\serviciohabitacion\entity\Municipio.class
 com\example\serviciohabitacion\controller\RabbitMQController.class
 com\example\serviciohabitacion\repository\HabitacionRepository.class

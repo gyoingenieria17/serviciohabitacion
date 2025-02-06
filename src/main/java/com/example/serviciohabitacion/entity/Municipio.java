@@ -6,6 +6,9 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Data
 @Entity
 @Table(name = "municipio")
@@ -33,9 +36,11 @@ public class Municipio {
 
     @ManyToOne
     @JoinColumn(name = "iddepartamento", nullable = false)
+    @JsonBackReference
     private Departamento departamento;
 
     @OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Hotel> hoteles;
 
     @PrePersist

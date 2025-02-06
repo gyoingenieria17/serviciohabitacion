@@ -6,6 +6,8 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Data
 @Entity
 @Table(name = "departamento")
@@ -32,6 +34,7 @@ public class Departamento {
     private LocalDateTime fechaActualizacion;
 
     @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Municipio> municipios;
 
     @PrePersist

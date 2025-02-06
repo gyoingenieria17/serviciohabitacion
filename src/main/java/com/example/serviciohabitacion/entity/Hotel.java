@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Data
 @Entity
 @Table(name = "hotel")
@@ -60,8 +62,9 @@ public class Hotel {
     @Column(name = "fecha_actualizacion")
     private LocalDateTime fechaActualizacion;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idmunicipio", nullable = false)
+    @JsonBackReference
     private Municipio municipio;
 
     @PrePersist

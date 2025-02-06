@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.serviciohabitacion.entity.Habitacion;
+import com.example.serviciohabitacion.service.HabitacionService;
+
 @RestController
 @RequestMapping("/api/v1/habitacion/rabbitmq")
 public class RabbitMQController {
@@ -15,6 +18,9 @@ public class RabbitMQController {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private HabitacionService habitacionService;
 
     @PostMapping("/send")
     public ResponseEntity<String> sendMessage(
@@ -38,5 +44,10 @@ public class RabbitMQController {
             log.error("Error al enviar el mensaje a RabbitMQ: ", e);
             return ResponseEntity.status(500).body("Error al enviar el mensaje a RabbitMQ: " + e.getMessage());
         }
+    }
+
+    @PutMapping("/{idHabitacion}")
+    public Habitacion actualizarHabitacion(@PathVariable Integer idHabitacion, @RequestBody Habitacion habitacionActualizada) {
+        return habitacionService.actualizarHabitacion(idHabitacion, habitacionActualizada);
     }
 }
